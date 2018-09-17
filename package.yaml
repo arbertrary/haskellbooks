@@ -1,0 +1,15 @@
+name: haskellbooks
+
+dependencies:
+  - base >= 4.7 && <5
+  # - text
+  - split
+  - random
+  - containers
+  - text
+  - bytestring
+
+executables:
+  haskellbooks-exe:
+    main: Main.hs
+    source-dirs: src
