@@ -8,8 +8,34 @@ dependencies:
   - containers
   - text
   - bytestring
+  - QuickCheck
+  - quickcheck-instances
+  - http-conduit
+
+default-extensions: OverloadedStrings
+
+library:
+  source-dirs: src
 
 executables:
   haskellbooks-exe:
     main: Main.hs
-    source-dirs: src
+    source-dirs: app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    # - -Wall
+    dependencies:
+    - haskellbooks
+
+tests:
+  haskellbooks-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskellbooks

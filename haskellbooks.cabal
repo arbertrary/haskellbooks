@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 613755a540cfedaed8dd80027fb8167448388ff742cdf8d1ec2440b4d45c5294
+-- hash: b63d69efdd50e0d1f4e1ffbb199d8189789bb1d3f17df2571516405af5b18165
 
 name:           haskellbooks
 version:        0.0.0
@@ -10,18 +10,66 @@ license-file:   LICENSE
 build-type:     Simple
 cabal-version:  >= 1.10
 
-executable haskellbooks-exe
-  main-is: Main.hs
-  other-modules:
+library
+  exposed-modules:
       Learn
+      Palindrome
       Pizza
+  other-modules:
       Paths_haskellbooks
   hs-source-dirs:
       src
+  default-extensions: OverloadedStrings
   build-depends:
-      base >=4.7 && <5
+      QuickCheck
+    , base >=4.7 && <5
     , bytestring
     , containers
+    , http-conduit
+    , quickcheck-instances
+    , random
+    , split
+    , text
+  default-language: Haskell2010
+
+executable haskellbooks-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_haskellbooks
+  hs-source-dirs:
+      app
+  default-extensions: OverloadedStrings
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , haskellbooks
+    , http-conduit
+    , quickcheck-instances
+    , random
+    , split
+    , text
+  default-language: Haskell2010
+
+test-suite haskellbooks-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_haskellbooks
+  hs-source-dirs:
+      test
+  default-extensions: OverloadedStrings
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , haskellbooks
+    , http-conduit
+    , quickcheck-instances
     , random
     , split
     , text
